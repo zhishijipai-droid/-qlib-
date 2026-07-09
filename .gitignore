@@ -1,0 +1,13 @@
+# 数据文件
+data/
+qlib_sim/data/
+output/*.json
+
+# Python缓存
+__pycache__/
+*.pyc
+.pip_cache/
+
+# 其他
+.prompts/
+*.tmp
