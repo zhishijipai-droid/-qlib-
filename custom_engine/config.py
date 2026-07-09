@@ -8,7 +8,7 @@ API_BASE = "http://115.159.73.134:8765"
 API_TOKEN = "sk-admin-pNxt77hQYi4druTaMnmJz8GxN5rw49I7"
 
 # ========== 本地数据路径 ==========
-BASE_DIR = r"D:/bigquant/qlib_sim"
+BASE_DIR = r"D:/bigquant/custom_engine"
 DATA_DIR = os.path.join(BASE_DIR, "data")
 STRATEGY_DIR = os.path.join(BASE_DIR, "strategies")
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
