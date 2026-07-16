@@ -16,8 +16,8 @@ RESULTS_DIR = os.path.join(BASE_DIR, "results")
 # ========== 回测参数 ==========
 BACKTEST_YEARS = 5          # 滚动窗口年数
 INIT_CAPITAL = 1_000_000    # 初始资金
-TRADE_FEE_RATE = 0.0006     # 手续费 万6 (单边)
-SLIPPAGE = 0.001            # 滑点 0.1%
+TRADE_FEE_RATE = 0.0003     # 手续费 万3 (聚宽默认, 双边)
+SLIPPAGE = 0.001           # 滑点 0.1%
 ST_TAX_RATE = 0.001         # 印花税 千1 (卖出时)
 MAX_STOCKS = 50             # 最大持仓数量
 BENCHMARK = "000300.SH"     # 基准指数(沪深300)
