@@ -1,0 +1,23 @@
+{
+  "factor_name": "backtest_engine",
+  "library": "custom",
+  "version": "1.0.0",
+  "display_name": "A股回测引擎 (Backtrader)",
+  "source_document": "自研 A 股回测引擎，基于 Backtrader 1.2+ 框架，支持多策略统一回测",
+  "formula": "signal → rebalance → trade → NAV",
+  "description": "将策略信号（小市值、微盘、红利v5、信号策略）通过 Backtrader 事件驱动引擎执行，按 A 股真实交易规则（万3+千1印花税+最低5元+0.1%滑点）计算净值曲线",
+  "frequency": "day",
+  "sample_scope": "全市场A股（剔除ST、新股、北交所）",
+  "required_fields": ["close", "open", "high", "low", "volume"],
+  "parameters": {
+    "commission": 0.0003,
+    "stamp_duty": 0.001,
+    "min_commission": 5.0,
+    "slippage": 0.001,
+    "initial_cash": 1000000,
+    "coc": true
+  },
+  "preprocessing": ["前复权价格", "日历重建"],
+  "neutralization": [],
+  "tags": ["backtrader", "A-share", "engine", "multi-strategy", "backtest"]
+}
