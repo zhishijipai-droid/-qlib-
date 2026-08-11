@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    // GitHub Pages SPA 路由修复:
+    // 把原路径存到 sessionStorage，然后跳回 index.html
+    sessionStorage.setItem('spa-redirect', window.location.pathname);
+    window.location.replace('/');
+  </script>
+</head>
+<body></body>
+</html>
