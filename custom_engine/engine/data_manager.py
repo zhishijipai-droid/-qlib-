@@ -315,7 +315,7 @@ def run_full_update():
     完整数据更新流程
     """
     print("=" * 50)
-    print("📡 开始数据更新...")
+    print("[DATA] 开始数据更新...")
     os.makedirs(DATA_DIR, exist_ok=True)
 
     calendar = get_trade_calendar()
@@ -326,7 +326,7 @@ def run_full_update():
     update_financial_data()
     update_market_cap()
 
-    print("✅ 数据更新完成")
+    print("[OK] 数据更新完成")
     return calendar, stock_info, df_k, df_adj, df_status
 
 if __name__ == "__main__":

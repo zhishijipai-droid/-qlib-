@@ -193,7 +193,10 @@ class BacktestEngine:
         if 'is_st' in today.columns:
             today = today[today['is_st'] == 0]
         if 'status_code' in today.columns:
-            today = today[today['status_code'] == 'NORMAL']
+            # 只有当天有实际 status 数据时才过滤（避免全 NaN 滤掉所有股票）
+            has_status = today['status_code'].notna().any()
+            if has_status:
+                today = today[today['status_code'] == 'NORMAL']
         if self._valid_symbols is not None:
             today = today[today['symbol'].isin(self._valid_symbols)]
         today = today[today['close_adj'] > 0]
@@ -549,7 +552,7 @@ def main():
     from strategies import discover_strategies
 
     print("=" * 50)
-    print("🚀 开始批量回测")
+    print("[START] 开始批量回测")
     print(f"   数据目录: {DATA_DIR}")
     print(f"   回测窗口: {BACKTEST_YEARS}年")
     print(f"   初始资金: {INIT_CAPITAL:,.0f}")
@@ -561,7 +564,7 @@ def main():
     # 发现策略
     strategies = discover_strategies()
     if not strategies:
-        print("\n⚠️  没有找到策略文件!")
+        print("\n[WARN] 没有找到策略文件!")
         print(f"   请在 {STRATEGY_DIR} 下创建策略文件")
         print(f"   参考模板: strategies/template.py")
         return
@@ -589,7 +592,7 @@ def main():
         nav_df.to_csv(os.path.join(result_dir, f"{safe_name}_nav.csv"))
         nav_df.to_parquet(os.path.join(result_dir, f"{safe_name}_nav.parquet"))
 
-    print(f"\n✅ 结果已保存: {result_dir}")
+    print(f"\n[OK] 结果已保存: {result_dir}")
     print(f"   报告: {report_path}")
 
     return all_nav, all_metrics
