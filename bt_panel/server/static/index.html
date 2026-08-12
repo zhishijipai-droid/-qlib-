@@ -5,6 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QUANT DESK · 量化策略面板</title>
+    <script>
+      // 注册 Service Worker 拦截 /api/* 请求
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(function(e) {
+          console.warn('SW registration failed:', e);
+        });
+      }
+      // SPA 路由修复: GitHub Pages 404 会把 path 存在 sessionStorage
+      (function() {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('spa-redirect');
+          var url = new URL(window.location.href);
+          url.pathname = redirect;
+          url.search = '';
+          url.hash = '';
+          window.history.replaceState(null, '', url.toString());
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/assets/index-BVKjroeu.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Bcxw1Ql7.css">
   </head>

@@ -1,10 +1,18 @@
 """
-QUANT DESK 后端配置
+QUANT DESK 后端配置 — 路径自动检测，无需硬编码
 """
-import os
+import os, sys
 
-# ── 数据路径（复用 BigQuant 引擎数据） ──
-ENGINE_DIR = r"D:\bigquant\custom_engine"
+# ── 项目根目录 (D:\bigquant) ──
+# config.py 在 bt_panel/server/ 下，往上 3 层是项目根
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# 将项目根加入 sys.path 以便导入 custom_engine/strategies 等
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+# ── 数据路径 ──
+ENGINE_DIR = os.path.join(PROJECT_ROOT, "custom_engine")
 DATA_DIR = os.path.join(ENGINE_DIR, "data")
 RESULTS_DIR = os.path.join(ENGINE_DIR, "results")
 STRATEGIES_DIR = os.path.join(ENGINE_DIR, "strategies")

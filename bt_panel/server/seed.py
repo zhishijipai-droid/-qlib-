@@ -13,7 +13,7 @@ STRATEGY_DEFS = [
     # small_cap 新数据收益率 ~0%，跳过
 ]
 
-OUTPUT_DIR = r"D:\bigquant\output"
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "output")
 SEED_MAPS = {"div_v5": 314, "micro_cap": 888}
 
 STOCK_POOL = [

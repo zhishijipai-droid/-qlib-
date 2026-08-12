@@ -15,12 +15,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-# 注入引擎模块路径（仅 engine_adapter 使用时才需要）
-# 注意：不注入 sys.path 以免覆盖本地的 config.py
-ENGINE_DIR = r"D:\bigquant\custom_engine"
-
 from config import (
-    DATA_DIR, INIT_CAPITAL,
+    DATA_DIR, INIT_CAPITAL, ENGINE_DIR,
     BENCHMARK_MAP,
 )
 from db import get_db, init_db, seed_data
